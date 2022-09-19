@@ -30,6 +30,8 @@
 #undef min
 #endif
 
+
+
 // Transpose rows/columns in a board:
 //   0123       048c
 //   4567  -->  159d
@@ -524,6 +526,15 @@ void play_game(get_move_func_t get_move) {
 }
 
 int main() {
+    clock_t t,s;
+    t = clock();
     init_tables();
+    t = clock() - t;
+    double time_taken_t = ((double)t)/CLOCKS_PER_SEC;
+    printf("init_tables() took %f seconds to execute \n", time_taken_t);
+    s = clock();
     play_game(find_best_move);
+    s = clock() - s;
+    double time_taken_s = ((double)s)/CLOCKS_PER_SEC;
+    printf("play_game() took %f seconds to execute \n", time_taken_s);
 }
